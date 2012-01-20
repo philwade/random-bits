@@ -32,9 +32,8 @@ route = {
 def knight(start, n):
     sum = 0
     if n == 1:
-        return len(route[str(start)])
+        return 1
     else:
-        print route[str(start)]
         for i in route[str(start)]:
             sum += knight(i, n - 1)
         return sum
