@@ -23,13 +23,13 @@ counts = Array.new(n + 1) { Array.new(10) { |i| i } }
     counts[1][i] = 1
 end
 
-(2..n).each do |n2|
-    (0..9).each do |i2|
+(2..n).each do |number|
+    (0..9).each do |digit|
         sum = 0
-        paths[i2].each do |from|
-            sum += counts[n2 - 1][from]
+        paths[digit].each do |from|
+            sum += counts[number - 1][from]
         end
-        counts[n2][i2] = sum
+        counts[number][digit] = sum
     end
 end
 
