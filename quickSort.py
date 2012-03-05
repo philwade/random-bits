@@ -8,18 +8,16 @@ class QuickSorter:
 
     def quickSort(self, set):
         self.depth += 1
+        self.complexity += 1;
         if(len(set) == 1 or len(set) == 0):
             return set
     
-        self.complexity += 1; print "select pivot"
         high = []
         low = []
         pivot = set[0]
         set.remove(pivot)
 
         for i in set:
-            print "compare greater"
-            print "compare less"
             self.complexity += 2
             if i > pivot:
                 high.append(i)
@@ -30,6 +28,6 @@ class QuickSorter:
 
 if __name__ == "__main__":
     q = QuickSorter()
-    runset = [1, 2, 3]
+    runset = [5, 1, 2, 3, 4]
     print q.quickSort(runset)
     print q.complexity
