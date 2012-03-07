@@ -1,4 +1,5 @@
 import sys
+import random
 
 class QuickSorter:
 
@@ -26,15 +27,18 @@ class QuickSorter:
         return self.quickSort(low) + [pivot] + self.quickSort(high)
 
     def inPlaceQuickSort(self, set, left, right):
+        print set[left:right+1]
         if left < right:
-            mid = self.partition(set, left, right)
-            self.inPlaceQuickSort(set, left, mid - 1)
-            self.inPlaceQuickSort(set, mid + 1, right)
+            pivotIndex = random.randint(left, right)
+            newPivot = self.partition(set, left, right, pivotIndex)
+            print newPivot
+            self.inPlaceQuickSort(set, left, newPivot - 1)
+            self.inPlaceQuickSort(set, newPivot + 1, right)
             
-    def partition(self, set, left, right):
-        pivotIndex = right / 2
+    def partition(self, set, left, right, pivotIndex):
         pivotValue = set[pivotIndex]
-        print pivotValue
+        print "pivot value", pivotValue
+        print "pivot index", pivotIndex
         set[pivotIndex] = set[right]
         set[right] = pivotValue
         swapSpot = left
@@ -59,6 +63,6 @@ if __name__ == "__main__":
     q = QuickSorter()
     runset = [5, 1, 2, 3, 4]
     #print q.quickSort(runset)
-    runset = [5, 7, 2, 3, 4]
+    runset = [7, 5, 3, 2, 9]
     q.inPlaceQuickSort(runset, 0, len(runset) - 1)
     print runset
