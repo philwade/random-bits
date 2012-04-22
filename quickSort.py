@@ -15,7 +15,7 @@ class QuickSorter:
     
         high = []
         low = []
-        pivot = set[0]
+        pivot = set[0] #I realize this is a bad choice
         set.remove(pivot)
 
         for i in set:
