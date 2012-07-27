@@ -1,3 +1,4 @@
+%% A Module for determining if a string contains properly paired parentheses.
 -module(sane).
 
 -export([pair/1, isSane/1, startPair/1, bookendPair/1]).
