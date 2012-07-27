@@ -1,6 +1,6 @@
 -module(sane).
 
--export([pair/1, isSane/1]).
+-export([pair/1, isSane/1, startPair/1, bookendPair/1]).
 
 pair("()") ->
 	true;
@@ -9,10 +9,24 @@ pair(")(") ->
 pair(_) ->
 	false.
 
+startPair("") ->
+	true;
+startPair(Exp) ->
+	sane:pair(string:substr(Exp, 1, 2)).
+
+bookendPair("") ->
+	true;
+bookendPair(Exp) ->
+	sane:pair([X || X <- [hd(Exp), lists:last(Exp)]]).
+
 isSane("") ->
 	true;
-isSane(Expression) ->
-	case sane:pair([X || X <- [hd(Expression), lists:last(Expression)]]) of
-		true -> isSane(string:substr(Expression, 2, string:len(Expression) - 2));
-		false -> false
+isSane(Exp) ->
+	case startPair(Exp) of
+		true -> isSane(string:substr(Exp, 3, string:len(Exp) - 2));
+		false ->
+			case bookendPair(Exp) of
+				true -> isSane(string:substr(Exp, 2, string:len(Exp) - 2));
+				false -> false
+			end
 	end.
