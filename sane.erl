@@ -12,12 +12,12 @@ pair(_) ->
 startPair("") ->
 	true;
 startPair(Exp) ->
-	sane:pair(string:substr(Exp, 1, 2)).
+	pair(string:substr(Exp, 1, 2)).
 
 bookendPair("") ->
 	true;
 bookendPair(Exp) ->
-	sane:pair([X || X <- [hd(Exp), lists:last(Exp)]]).
+	pair([X || X <- [hd(Exp), lists:last(Exp)]]).
 
 isSane("") ->
 	true;
